@@ -2,7 +2,9 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+
+
+const Navbar = ({ isAuth }) => {
   const navigate = useNavigate();
 
   return (
@@ -11,7 +13,9 @@ const Navbar = () => {
         <h1 className="text-xl font-bold">Admin Panel</h1>
 
         <div className="flex items-center gap-4">
-          <button
+          {!isAuth ? (
+            <>      
+            <button
             onClick={() => navigate("/login")}
             className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
           >
@@ -23,6 +27,13 @@ const Navbar = () => {
           >
             Register
           </button>
+        </>
+        ) : (
+          <button onClick={() => localStorage.removeItem("token")} className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+            Logout
+          </button>
+        )
+        }
         </div>
       </div>
     </nav>

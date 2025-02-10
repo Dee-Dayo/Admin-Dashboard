@@ -8,27 +8,31 @@ import Login from "./pages/Auth/Login/Login.jsx";
 import Dashboard from "./features/dashboard/Dashboard.jsx";
 import Admin from "./features/admin/admin.jsx";
 import SettingsPage from "./features/dashboard/SettingsPage.jsx";
+import PrivateRoute from "./components/PrivateRoute.jsx";
+
 
 
 const App = () => {
   const location = useLocation();
   const excludePaths = ["/register", "/login"];
+  const isAuth = localStorage.getItem("token");
+  console.log(isAuth);
 
   return (
     <div className="flex">
       {!excludePaths.includes(location.pathname) && <Sidebar />}
       <div className="flex-1">
-        <Navbar />
+        <Navbar isAuth={isAuth} />
         <div className="p-6">
 
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/" element={isAuth ? <Dashboard /> : <Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/users" element={<Users />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/settings" element={<SettingsPage />} />
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/users" element={<PrivateRoute><Users /></PrivateRoute>} />
+            <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
+            <Route path="/settings" element={<PrivateRoute><SettingsPage /></PrivateRoute>} />
           </Routes>
         
         </div>

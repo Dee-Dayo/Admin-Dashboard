@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+
 
 const LoginPage = () => {
     const [email, setEmail] = useState("");
@@ -16,17 +18,15 @@ const LoginPage = () => {
         e.preventDefault();
         setLoading(true);
 
-        const endpoint = role === "Admin" 
+        const endpoint = role === "Admin"
             ? "https://admindashboard-8ee2.onrender.com/api/v1/Admin/login"
             : "https://admindashboard-8ee2.onrender.com/api/v1/User/login";
 
         try {
             const response = await axios.post(endpoint, { email, password });
             toast.success("Login successful!");
-
             // Save token to localStorage
             localStorage.setItem("token", response.data.token);
-
             // Redirect to dashboard
             navigate("/dashboard");
         } catch (error) {
@@ -87,8 +87,10 @@ const LoginPage = () => {
                     >
                         {loading ? "Loading..." : "Login"}
                     </button>
+                    <p>Don&apos;t have an account?  <button onClick={() => navigate("/register")}     className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Register</button></p>   
                 </form>
             </div>
+        <ToastContainer />
         </div>
     );
 };

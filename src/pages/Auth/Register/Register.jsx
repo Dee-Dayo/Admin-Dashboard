@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import photo from "../../../assets/register.jpg";
 
@@ -165,7 +165,8 @@ const Signup = () => {
             >
               <option value="">Select Role</option>
               <option value="ADMIN">Admin</option>
-              <option value="USER">User</option>
+              <option value="USER">Viewer</option>
+              <option value="USER">Editor</option>
             </select>
             {errors.role && <div className="text-red-500 text-sm mt-1">{errors.role}</div>}
           </div>
@@ -191,6 +192,7 @@ const Signup = () => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -2,19 +2,17 @@ import { useSelector } from "react-redux";
 import { Navigate, useLocation } from "react-router-dom";
 import { RootState } from "../store/store";
 
-const PrivateRoute = ({ children, requiredRole }) => {
+const PrivateRoute = ({ children, isAuth }) => {
   const location = useLocation();
-  const auth = useSelector((state) => state.auth);
+  
 
-  if (!auth.accessToken) {
+  if (!isAuth) {
     return <Navigate to="/login" state={{ from: location.pathname }} replace />;
   }
 
-  if (requiredRole && auth.user?.role !== requiredRole){
-    return <Navigate to="/" replace />;
-  }
+  
 
   return children;
 };
 
-export const PrivateRoute;
+export default PrivateRoute;
