@@ -171,7 +171,6 @@ const Signup = () => {
             </select>
             {errors.role && <div className="text-red-500 text-sm mt-1">{errors.role}</div>}
           </div>
-
           <div className="flex justify-center">
             <button
               type="submit"
