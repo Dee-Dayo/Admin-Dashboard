@@ -15,7 +15,7 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 const App = () => {
   const location = useLocation();
   const excludePaths = ["/register", "/login"];
-  const isAuth = localStorage.getItem("token");
+  const isAuth = localStorage.getItem("token") || undefined;
   console.log(isAuth);
 
   return (
@@ -29,10 +29,10 @@ const App = () => {
             <Route path="/" element={isAuth ? <Dashboard /> : <Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-            <Route path="/users" element={<PrivateRoute><Users /></PrivateRoute>} />
-            <Route path="/admin" element={<PrivateRoute><Admin /></PrivateRoute>} />
-            <Route path="/settings" element={<PrivateRoute><SettingsPage /></PrivateRoute>} />
+            <Route path="/dashboard" element={<PrivateRoute isAuth={isAuth}><Dashboard /></PrivateRoute>} />
+            <Route path="/users" element={<PrivateRoute isAuth={isAuth}><Users /></PrivateRoute>} />
+            <Route path="/admin" element={<PrivateRoute isAuth={isAuth}><Admin /></PrivateRoute>} />
+            <Route path="/settings" element={<PrivateRoute isAuth={isAuth}><SettingsPage /></PrivateRoute>} />
           </Routes>
         
         </div>
