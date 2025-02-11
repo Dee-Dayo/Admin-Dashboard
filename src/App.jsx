@@ -32,7 +32,7 @@ const App = () => {
             <Route path="/dashboard" element={<PrivateRoute isAuth={isAuth}><Dashboard /></PrivateRoute>} />
             <Route path="/users" element={<PrivateRoute isAuth={isAuth}><Users /></PrivateRoute>} />
             <Route path="/admin" element={<PrivateRoute isAuth={isAuth}><Admin /></PrivateRoute>} />
-            <Route path="/settings" element={<PrivateRoute isAuth={isAuth}><SettingsPage /></PrivateRoute>} />
+            {/*<Route path="/settings" element={<PrivateRoute isAuth={isAuth}><SettingsPage /></PrivateRoute>} />*/}
           </Routes>
         
         </div>
