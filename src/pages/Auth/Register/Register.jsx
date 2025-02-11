@@ -45,7 +45,6 @@ const Signup = () => {
     newErrors.password = "Password must contain at least one special character";
   }
   if (!formData.role) newErrors.role = "Role is required";
-
   setErrors(newErrors);
   return Object.keys(newErrors).length === 0;
 };
