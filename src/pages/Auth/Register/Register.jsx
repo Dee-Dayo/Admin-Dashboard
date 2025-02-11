@@ -165,8 +165,8 @@ const Signup = () => {
             >
               <option value="">Select Role</option>
               <option value="ADMIN">Admin</option>
-              <option value="USER">Viewer</option>
-              <option value="USER">Editor</option>
+              <option value="VIEWER">Viewer</option>
+              <option value="EDITOR">Editor</option>
 
             </select>
             {errors.role && <div className="text-red-500 text-sm mt-1">{errors.role}</div>}
