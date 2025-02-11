@@ -50,7 +50,6 @@ const Signup = () => {
   return Object.keys(newErrors).length === 0;
 };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
